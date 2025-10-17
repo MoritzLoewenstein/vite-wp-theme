@@ -11,9 +11,9 @@ concurrency:
   group: publish-main
   cancel-in-progress: false
 
-#permissions:
-#  id-token: write
-#  contents: read
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   publish:
@@ -36,5 +36,4 @@ jobs:
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish --tag latest
-        #--provenance
+        run: npm publish --tag latest --provenance
