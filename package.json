@@ -3,6 +3,10 @@
 	"version": "1.0.1",
 	"type": "module",
 	"description": "",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/MoritzLoewenstein/vite-wp-theme.git"
+	},
 	"files": [
 		"dist"
 	],
