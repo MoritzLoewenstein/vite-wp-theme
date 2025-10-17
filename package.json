@@ -1,0 +1,55 @@
+{
+	"name": "@moritzloewenstein/vite-wp-theme",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "",
+	"files": [
+		"dist"
+	],
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": "./dist/index.js",
+		"./package.json": "./package.json"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"build": "tsdown",
+		"dev": "tsdown --watch",
+		"typecheck": "tsc --noEmit",
+		"biome:check": "biome check .",
+		"biome:write": "biome check --write .",
+		"biome:ci": "biome ci .",
+		"test": "node --test",
+		"test:only": "node --test --test-only",
+		"test:watch": "node --test --watch"
+	},
+	"keywords": [
+		"vite-plugin"
+	],
+	"author": {
+		"name": "Moritz Löwenstein",
+		"url": "https://github.com/MoritzLoewenstein"
+	},
+	"license": "MIT",
+	"volta": {
+		"node": "22.20.0"
+	},
+	"peerDependencies": {
+		"vite": "^7.x"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.2.6",
+		"@types/node": "^22.18.11",
+		"tsdown": "^0.15.7",
+		"typescript": "^5.9.3"
+	},
+	"dependencies": {
+		"@moritzloewenstein/vite-plugin-rsync": "^1.0.4",
+		"@moritzloewenstein/vite-plugin-sass-glob-import": "^6.0.3",
+		"@moritzloewenstein/vite-plugin-zip": "^1.0.7"
+	}
+}
