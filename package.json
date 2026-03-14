@@ -5,7 +5,7 @@
 	"description": "",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/MoritzLoewenstein/vite-wp-theme.git"
+		"url": "git+https://github.com/MoritzLoewenstein/vite-wp-theme.git"
 	},
 	"files": [
 		"dist"
