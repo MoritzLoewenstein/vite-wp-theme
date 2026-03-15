@@ -52,8 +52,8 @@
 		"typescript": "^5.9.3"
 	},
 	"dependencies": {
-		"@moritzloewenstein/vite-plugin-rsync": "^1.0.5",
-		"@moritzloewenstein/vite-plugin-sass-glob-import": "^6.0.3",
-		"@moritzloewenstein/vite-plugin-zip": "^1.0.7"
+		"@moritzloewenstein/vite-plugin-rsync": "^1.0.6",
+		"@moritzloewenstein/vite-plugin-sass-glob-import": "^6.0.4",
+		"@moritzloewenstein/vite-plugin-zip": "^1.0.8"
 	}
 }
