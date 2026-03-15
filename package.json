@@ -10,11 +10,11 @@
 	"files": [
 		"dist"
 	],
-	"main": "./dist/index.js",
-	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts",
+	"main": "./dist/index.mjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.mts",
 	"exports": {
-		".": "./dist/index.js",
+		".": "./dist/index.mjs",
 		"./package.json": "./package.json"
 	},
 	"publishConfig": {
@@ -52,8 +52,8 @@
 		"typescript": "^5.9.3"
 	},
 	"dependencies": {
-		"@moritzloewenstein/vite-plugin-rsync": "^1.0.6",
+		"@moritzloewenstein/vite-plugin-rsync": "^1.0.8",
 		"@moritzloewenstein/vite-plugin-sass-glob-import": "^6.0.4",
-		"@moritzloewenstein/vite-plugin-zip": "^1.0.8"
+		"@moritzloewenstein/vite-plugin-zip": "^1.0.9"
 	}
 }
