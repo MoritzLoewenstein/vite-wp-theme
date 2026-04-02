@@ -43,17 +43,17 @@
 		"node": "22.20.0"
 	},
 	"peerDependencies": {
-		"vite": "^7.3.1"
+		"vite": "^8.0.3"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.4.7",
+		"@biomejs/biome": "^2.4.10",
 		"@types/node": "^22.19.15",
-		"tsdown": "^0.21.2",
-		"typescript": "^5.9.3"
+		"tsdown": "^0.21.7",
+		"typescript": "^6.0.2"
 	},
 	"dependencies": {
-		"@moritzloewenstein/vite-plugin-rsync": "^1.0.8",
-		"@moritzloewenstein/vite-plugin-sass-glob-import": "^6.0.4",
-		"@moritzloewenstein/vite-plugin-zip": "^1.0.9"
+		"@moritzloewenstein/vite-plugin-rsync": "^2.0.2",
+		"@moritzloewenstein/vite-plugin-sass-glob-import": "^7.0.1",
+		"@moritzloewenstein/vite-plugin-zip": "^2.0.0"
 	}
 }
