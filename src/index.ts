@@ -21,9 +21,13 @@ interface UserConfig {
 			host: string;
 			/**
 			 * rsync target port
-			 * @default 21
+			 * @default 22
 			 */
 			port?: number;
+			/**
+			 * rsync target SSH password; requires sshpass to be installed
+			 */
+			password?: string;
 			/**
 			 * rsync target path
 			 */
