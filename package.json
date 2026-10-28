@@ -1,6 +1,6 @@
 {
 	"name": "@moritzloewenstein/vite-wp-theme",
-	"version": "3.2.0",
+	"version": "3.2.1",
 	"type": "module",
 	"description": "",
 	"repository": {
@@ -54,7 +54,7 @@
 	},
 	"dependencies": {
 		"@moritzloewenstein/vite-plugin-rsync": "^3.1.0",
-		"@moritzloewenstein/vite-plugin-sass-glob-import": "^8.0.0",
+		"@moritzloewenstein/vite-plugin-sass-glob-import": "^8.0.1",
 		"@moritzloewenstein/vite-plugin-zip": "^3.0.0"
 	}
 }
