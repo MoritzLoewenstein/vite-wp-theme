@@ -9,6 +9,8 @@ interface UserConfig {
 	themeName: string;
 	useZip: boolean;
 	useRsync: boolean;
+	/** Additional files to exclude from theme archives and rsync deployments. */
+	exclude?: string[];
 	rsync?: {
 		target: {
 			/**
@@ -65,6 +67,7 @@ const EXCLUDE = [
 
 export function getVitePlugins(config: UserConfig): PluginOption[] {
 	const plugins = [];
+	const exclude = [...new Set([...EXCLUDE, ...(config.exclude ?? [])])];
 	const sassGlob = sassGlobImports({
 		autoInvalidation: true,
 		ignorePaths: ["blocks/_block/block.scss"],
@@ -92,7 +95,7 @@ export function getVitePlugins(config: UserConfig): PluginOption[] {
 		const zip = vitePluginZip({
 			zipName: `${config.themeName}.zip`,
 			include: INCLUDE,
-			exclude: EXCLUDE,
+			exclude,
 			beforeClose(archive) {
 				// add composer prod dependencies to zip
 				const cwd = process.cwd();
@@ -117,7 +120,7 @@ export function getVitePlugins(config: UserConfig): PluginOption[] {
 			const rsync = vitePluginRsync({
 				target: config.rsync.target,
 				include: INCLUDE,
-				exclude: EXCLUDE,
+				exclude,
 			});
 			plugins.push(rsync);
 		}
