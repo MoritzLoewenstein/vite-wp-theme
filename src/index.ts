@@ -44,17 +44,24 @@ const EXCLUDE = [
 	// blocks
 	"blocks/_block/**/*",
 	"blocks/*/block.js",
+	"blocks/*/block.ts",
 	// development
 	"stubs/**/*",
 	".vscode/**/*",
+	".local/**/*",
+	".amp/**/*",
 	".gitignore",
 	".git/**/*",
 	".github/**/*",
 	"scripts/**/*",
 	".php-cs-fixer.dist.php",
-	//".env.example",
+	".php-cs-fixer.cache",
+	".prettierrc",
 	"biome.json",
 	"vite.config.js",
+	"vite.config.ts",
+	"tsconfig.json",
+	"vite-env.d.ts",
 	"phpstan.neon.dist",
 	// dependencies
 	"node_modules/**/*",
@@ -67,7 +74,13 @@ const EXCLUDE = [
 
 export function getVitePlugins(config: UserConfig): PluginOption[] {
 	const plugins = [];
-	const exclude = [...new Set([...EXCLUDE, ...(config.exclude ?? [])])];
+	const exclude = [
+		...new Set([
+			...EXCLUDE,
+			`dist/${config.themeName}.zip`,
+			...(config.exclude ?? []),
+		]),
+	];
 	const sassGlob = sassGlobImports({
 		autoInvalidation: true,
 		ignorePaths: ["blocks/_block/block.scss"],

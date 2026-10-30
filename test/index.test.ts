@@ -99,11 +99,36 @@ describe("getVitePlugins deployment configuration", () => {
 
 		mkdirSync(binDirectory, { recursive: true });
 		mkdirSync(vendorDirectory, { recursive: true });
+		mkdirSync(path.join(directory, ".local"), { recursive: true });
+		mkdirSync(path.join(directory, ".amp"), { recursive: true });
+		mkdirSync(path.join(directory, "blocks", "sample"), { recursive: true });
 		writeFileSync(composerPath, "#!/bin/sh\nexit 0\n");
 		chmodSync(composerPath, 0o755);
 		writeFileSync(path.join(directory, "index.php"), "<?php\n");
 		writeFileSync(path.join(directory, "task.md"), "private task notes\n");
+		writeFileSync(
+			path.join(directory, ".local", "credentials.txt"),
+			"secret\n",
+		);
+		writeFileSync(path.join(directory, ".amp", "thread.txt"), "private\n");
+		writeFileSync(path.join(directory, ".DS_Store"), "metadata\n");
+		writeFileSync(path.join(directory, ".php-cs-fixer.cache"), "cache\n");
+		writeFileSync(path.join(directory, ".prettierrc"), "{}\n");
+		writeFileSync(path.join(directory, "tsconfig.json"), "{}\n");
+		writeFileSync(
+			path.join(directory, "vite-env.d.ts"),
+			"declare const x: string;\n",
+		);
+		writeFileSync(
+			path.join(directory, "blocks", "sample", "block.js"),
+			"export {};\n",
+		);
+		writeFileSync(
+			path.join(directory, "blocks", "sample", "block.ts"),
+			"export {};\n",
+		);
 		writeFileSync(path.join(vendorDirectory, "autoload.php"), "<?php\n");
+		writeFileSync(path.join(distDirectory, "test-theme.zip"), "old archive\n");
 		process.env.PATH = `${binDirectory}${path.delimiter}${originalPath ?? ""}`;
 
 		try {
@@ -132,8 +157,26 @@ describe("getVitePlugins deployment configuration", () => {
 			const entries = execFileSync("unzip", ["-Z1", archivePath], {
 				encoding: "utf8",
 			});
-			assert.ok(entries.split("\n").includes("index.php"));
-			assert.ok(!entries.split("\n").includes("task.md"));
+			const archivedFiles = entries.split("\n");
+			assert.ok(archivedFiles.includes("index.php"));
+			for (const excludedFile of [
+				"task.md",
+				".local/credentials.txt",
+				".amp/thread.txt",
+				".DS_Store",
+				".php-cs-fixer.cache",
+				".prettierrc",
+				"tsconfig.json",
+				"vite-env.d.ts",
+				"blocks/sample/block.js",
+				"blocks/sample/block.ts",
+				"dist/test-theme.zip",
+			]) {
+				assert.ok(
+					!archivedFiles.includes(excludedFile),
+					`${excludedFile} should not be included in the theme archive`,
+				);
+			}
 		} finally {
 			if (originalPath === undefined) delete process.env.PATH;
 			else process.env.PATH = originalPath;
