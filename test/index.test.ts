@@ -93,11 +93,13 @@ describe("getVitePlugins deployment configuration", () => {
 		const directory = mkdtempSync(path.join(os.tmpdir(), "vite-wp-theme-"));
 		const binDirectory = path.join(directory, "bin");
 		const distDirectory = path.join(directory, "dist");
+		const viteMetadataDirectory = path.join(distDirectory, ".vite");
 		const vendorDirectory = path.join(distDirectory, "vendor");
 		const composerPath = path.join(binDirectory, "composer");
 		const originalPath = process.env.PATH;
 
 		mkdirSync(binDirectory, { recursive: true });
+		mkdirSync(viteMetadataDirectory, { recursive: true });
 		mkdirSync(vendorDirectory, { recursive: true });
 		mkdirSync(path.join(directory, ".local"), { recursive: true });
 		mkdirSync(path.join(directory, ".amp"), { recursive: true });
@@ -105,6 +107,7 @@ describe("getVitePlugins deployment configuration", () => {
 		writeFileSync(composerPath, "#!/bin/sh\nexit 0\n");
 		chmodSync(composerPath, 0o755);
 		writeFileSync(path.join(directory, "index.php"), "<?php\n");
+		writeFileSync(path.join(viteMetadataDirectory, "manifest.json"), "{}\n");
 		writeFileSync(path.join(directory, "task.md"), "private task notes\n");
 		writeFileSync(
 			path.join(directory, ".local", "credentials.txt"),
@@ -159,6 +162,7 @@ describe("getVitePlugins deployment configuration", () => {
 			});
 			const archivedFiles = entries.split("\n");
 			assert.ok(archivedFiles.includes("index.php"));
+			assert.ok(archivedFiles.includes("dist/.vite/manifest.json"));
 			for (const excludedFile of [
 				"task.md",
 				".local/credentials.txt",

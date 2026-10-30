@@ -38,7 +38,7 @@ interface UserConfig {
 	};
 }
 
-const INCLUDE = ["**/*"];
+const INCLUDE = ["**/*", "dist/.vite/**/*"];
 const EXCLUDE = [
 	"**/*.scss",
 	// blocks
