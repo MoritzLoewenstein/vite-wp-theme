@@ -1,6 +1,6 @@
 {
 	"name": "@moritzloewenstein/vite-wp-theme",
-	"version": "3.2.4",
+	"version": "3.2.5",
 	"type": "module",
 	"description": "",
 	"repository": {
@@ -29,7 +29,8 @@
 		"biome:ci": "biome ci .",
 		"test": "node --test",
 		"test:only": "node --test --test-only",
-		"test:watch": "node --test --watch"
+		"test:watch": "node --test --watch",
+		"prepare": "npm run build"
 	},
 	"keywords": [
 		"vite-plugin"

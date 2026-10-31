@@ -38,22 +38,23 @@ interface UserConfig {
 	};
 }
 
-const INCLUDE = ["**/*", "dist/.vite/**/*"];
+const INCLUDE = ["**/*", ".*", "**/.*", "dist/.vite/**/*"];
 const EXCLUDE = [
 	"**/*.scss",
 	// blocks
-	"blocks/_block/**/*",
+	"blocks/_block/**",
 	"blocks/*/block.js",
 	"blocks/*/block.ts",
 	// development
-	"stubs/**/*",
-	".vscode/**/*",
-	".local/**/*",
-	".amp/**/*",
+	"stubs/**",
+	".vscode/**",
+	".local/**",
+	".amp/**",
+	".agents/**",
 	".gitignore",
-	".git/**/*",
-	".github/**/*",
-	"scripts/**/*",
+	".git/**",
+	".github/**",
+	"scripts/**",
 	".php-cs-fixer.dist.php",
 	".php-cs-fixer.cache",
 	".prettierrc",
@@ -63,9 +64,13 @@ const EXCLUDE = [
 	"tsconfig.json",
 	"vite-env.d.ts",
 	"phpstan.neon.dist",
+	".DS_Store",
+	// secrets
+	".env",
+	".env.*",
 	// dependencies
-	"node_modules/**/*",
-	"/vendor/***",
+	"node_modules/**",
+	"/vendor/**",
 	// docs & other
 	"readme.md",
 	"package.json",
@@ -105,10 +110,11 @@ export function getVitePlugins(config: UserConfig): PluginOption[] {
 	plugins.push(phpReload);
 
 	if (config.useZip) {
+		const zipExclude = exclude.map((pattern) => pattern.replace(/^\/+/, ""));
 		const zip = vitePluginZip({
 			zipName: `${config.themeName}.zip`,
 			include: INCLUDE,
-			exclude,
+			exclude: zipExclude,
 			beforeClose(archive) {
 				// add composer prod dependencies to zip
 				const cwd = process.cwd();
