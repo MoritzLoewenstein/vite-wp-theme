@@ -65,7 +65,7 @@ const EXCLUDE = [
 	"phpstan.neon.dist",
 	// dependencies
 	"node_modules/**/*",
-	"vendor/**/*",
+	"/vendor/***",
 	// docs & other
 	"readme.md",
 	"package.json",
