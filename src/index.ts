@@ -64,13 +64,13 @@ const EXCLUDE = [
 	"tsconfig.json",
 	"vite-env.d.ts",
 	"phpstan.neon.dist",
-	".DS_Store",
+	"**/.DS_Store",
 	// secrets
 	".env",
 	".env.*",
 	// dependencies
 	"node_modules/**",
-	"/vendor/**",
+	"/vendor",
 	// docs & other
 	"readme.md",
 	"package.json",

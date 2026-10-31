@@ -73,7 +73,7 @@ describe("getVitePlugins deployment configuration", () => {
 			};
 			assert.ok(result.args.includes("--rsh=sshpass -e ssh -p 22"));
 			assert.ok(result.args.some((argument) => argument.includes("task.md")));
-			assert.ok(result.args.includes("--exclude=/vendor/**"));
+			assert.ok(result.args.includes("--exclude=/vendor"));
 			assert.ok(!result.args.includes("--exclude=vendor/**/*"));
 			assert.equal(result.password, "test-password");
 			assert.ok(
